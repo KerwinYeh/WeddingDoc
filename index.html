@@ -1,7 +1,8 @@
-# Create a beautifully styled HTML file as a premium wedding invitation landing page.
-# Integrating all requirements, premium aesthetics with CSS, Glassmorphism, and requested color scheme.
+# Let's adjust the previously written wedding invitation code to strict responsive, fluid standards
+# and fix potential issues where long contents/containers might overflow viewport on mobile devices.
+# We will use v-v2 suffix for file name tracking.
 
-html_content = """<!DOCTYPE html>
+responsive_html_content = """<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
@@ -17,7 +18,7 @@ html_content = """<!DOCTYPE html>
             --card-bg: rgba(255, 255, 255, 0.9);
         }
 
-        * {
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -28,7 +29,8 @@ html_content = """<!DOCTYPE html>
             background-color: var(--light-bg);
             color: #333;
             line-height: 1.8;
-            overflow-x: hidden;
+            overflow-x: hidden; /* 防止任何全局溢出 */
+            width: 100%;
         }
 
         .en-font {
@@ -48,14 +50,16 @@ html_content = """<!DOCTYPE html>
             border-bottom: 1px solid rgba(255, 255, 255, 0.3);
             display: flex;
             justify-content: center;
-            padding: 12px 0;
+            padding: 12px 10px;
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 24px;
+            gap: 20px;
+            flex-wrap: wrap; /* 手機版自動折行防止溢出 */
+            justify-content: center;
         }
 
         .nav-links a {
@@ -73,7 +77,7 @@ html_content = """<!DOCTYPE html>
 
         /* 5. 首頁全螢幕封面背景 */
         .hero {
-            height: 100vh;
+            min-height: 100vh; /* 改用 min-height 防止小螢幕內容擠壓溢出 */
             background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.55)), url('https://i.postimg.cc/m2CD76L5/1T6A0346.jpg') no-repeat center center/cover;
             display: flex;
             flex-direction: column;
@@ -81,11 +85,12 @@ html_content = """<!DOCTYPE html>
             align-items: center;
             text-align: center;
             color: #fff;
-            padding: 0 20px;
+            padding: 80px 20px 40px 20px; /* 增加上方留白避免被導航列擋住 */
+            width: 100%;
         }
 
         .hero h1 {
-            font-size: 42px;
+            font-size: clamp(28px, 8vw, 42px); /* 響應式字型大小 */
             font-weight: 400;
             margin-bottom: 10px;
             letter-spacing: 4px;
@@ -93,43 +98,59 @@ html_content = """<!DOCTYPE html>
         }
 
         .hero h2 {
-            font-size: 24px;
+            font-size: clamp(18px, 5vw, 24px);
             font-weight: 400;
             color: var(--accent-gold);
             margin-bottom: 25px;
             letter-spacing: 2px;
         }
 
+        .hero-tagline {
+            font-size: clamp(12px, 3.5vw, 14px);
+            letter-spacing: 2px; 
+            color: var(--accent-gold); 
+            margin-bottom: 5px;
+            padding: 0 10px;
+        }
+
         .hero-names {
-            font-size: 20px;
+            font-size: clamp(16px, 4.5vw, 20px);
             letter-spacing: 5px;
             margin-bottom: 40px;
             border-top: 1px solid rgba(255,255,255,0.4);
             border-bottom: 1px solid rgba(255,255,255,0.4);
             padding: 10px 30px;
+            max-width: 90%;
         }
 
         /* 4. 計時器視覺 (白色微光卡片) */
         .countdown-container {
             display: flex;
-            gap: 15px;
+            gap: 10px;
             margin-top: 20px;
+            flex-wrap: wrap; /* 讓計時卡片在窄螢幕自動向下排列，防止超出視窗 */
+            justify-content: center;
+            width: 100%;
+            max-width: 500px;
         }
 
         .time-card {
             background: rgba(255, 255, 255, 0.95);
-            padding: 15px 20px;
+            padding: 10px 15px;
             border-radius: 12px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
             display: flex;
             align-items: center;
-            min-width: 100px;
+            justify-content: center;
+            flex: 1 1 calc(25% - 10px); /* 彈性基礎，確保均分 */
+            min-width: 85px; /* 設定安全寬度避免擠壓變形 */
+            max-width: 110px;
             border: 1px solid rgba(255,255,255,0.6);
         }
 
         .time-num {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 32px;
+            font-size: clamp(22px, 5vw, 32px);
             font-weight: 600;
             color: var(--primary-red);
             line-height: 1;
@@ -137,9 +158,9 @@ html_content = """<!DOCTYPE html>
 
         .time-divider {
             width: 1px;
-            height: 25px;
+            height: 20px;
             background-color: rgba(0, 0, 0, 0.1);
-            margin: 0 12px;
+            margin: 0 8px;
         }
 
         .time-label {
@@ -153,22 +174,23 @@ html_content = """<!DOCTYPE html>
         }
 
         .time-label span {
-            font-size: 10px;
+            font-size: 9px;
             text-transform: uppercase;
             color: #999;
         }
 
         /* 區塊通用樣式 */
         section {
-            padding: 80px 20px;
+            padding: clamp(50px, 8vw, 80px) 20px;
             max-width: 1000px;
+            width: 100%;
             margin: 0 auto;
             text-align: center;
         }
 
         .section-title {
             color: var(--primary-red);
-            font-size: 28px;
+            font-size: clamp(22px, 6vw, 28px);
             margin-bottom: 15px;
             letter-spacing: 2px;
             position: relative;
@@ -196,32 +218,30 @@ html_content = """<!DOCTYPE html>
         .v-card-container {
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 20px;
+            width: 100%;
             max-width: 600px;
             margin: 0 auto;
         }
 
         .v-card {
             background: white;
-            padding: 35px 25px;
+            padding: clamp(25px, 5vw, 35px) 20px;
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.03);
             border-left: 5px solid var(--primary-red);
             text-align: left;
             transition: transform 0.3s;
+            width: 100%;
         }
 
         .v-card:nth-child(even) {
             border-left-color: var(--forest-green);
         }
 
-        .v-card:hover {
-            transform: translateY(-5px);
-        }
-
         .v-card h3 {
             color: var(--forest-green);
-            font-size: 20px;
+            font-size: 18px;
             margin-bottom: 15px;
             display: flex;
             align-items: center;
@@ -229,18 +249,19 @@ html_content = """<!DOCTYPE html>
         }
 
         .v-card p {
-            font-size: 15px;
+            font-size: 14px;
             color: #555;
             margin-bottom: 8px;
         }
 
-        /* 8. 手機版視覺優化不換行類別 */
+        /* 8. 手機版視覺優化不換行類別 - 用於地標單字 */
         .no-wrap {
             white-space: nowrap;
         }
 
         /* 9. 交通指引摺疊面板 (Accordion) */
         .accordion {
+            width: 100%;
             max-width: 600px;
             margin: 30px auto 0;
             text-align: left;
@@ -252,6 +273,7 @@ html_content = """<!DOCTYPE html>
             margin-bottom: 10px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.02);
             overflow: hidden;
+            width: 100%;
         }
 
         .accordion-header {
@@ -265,6 +287,7 @@ html_content = """<!DOCTYPE html>
             align-items: center;
             border-bottom: 1px solid #f0f0f0;
             transition: background 0.3s;
+            font-size: 15px;
         }
 
         .accordion-header:hover {
@@ -278,14 +301,16 @@ html_content = """<!DOCTYPE html>
             font-size: 14px;
             color: #555;
             border-top: 1px solid #eee;
+            line-height: 1.6;
         }
 
         /* 6. 表單與中英雙語標籤 */
         .form-container {
             background: white;
+            width: 100%;
             max-width: 600px;
             margin: 0 auto;
-            padding: 40px 30px;
+            padding: clamp(25px, 6vw, 40px) clamp(15px, 4vw, 30px);
             border-radius: 16px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.04);
             text-align: left;
@@ -293,6 +318,7 @@ html_content = """<!DOCTYPE html>
 
         .form-group {
             margin-bottom: 20px;
+            width: 100%;
         }
 
         .form-label {
@@ -329,8 +355,9 @@ html_content = """<!DOCTYPE html>
 
         .radio-group {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             margin-top: 5px;
+            flex-wrap: wrap; /* 讓選項過長時在手機上能自動折行 */
         }
 
         .radio-label {
@@ -380,16 +407,27 @@ html_content = """<!DOCTYPE html>
             padding: 40px 20px;
             font-size: 13px;
             letter-spacing: 1px;
+            width: 100%;
         }
 
-        /* 響應式優化 */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 30px; }
-            .hero h2 { font-size: 18px; }
-            .countdown-container { scale: 0.85; }
-            .nav-links { gap: 15px; }
-            .nav-links a { font-size: 12px; }
-            section { padding: 60px 15px; }
+        /* 針對窄小螢幕（如 iPhone SE 等機型）做更極致的優化 */
+        @media (max-width: 400px) {
+            .countdown-container {
+                gap: 8px;
+            }
+            .time-card {
+                min-width: 75px;
+                padding: 8px 10px;
+            }
+            .time-divider {
+                margin: 0 4px;
+            }
+            .nav-links {
+                gap: 12px;
+            }
+            .nav-links a {
+                font-size: 12px;
+            }
         }
     </style>
 </head>
@@ -407,7 +445,7 @@ html_content = """<!DOCTYPE html>
     <header class="hero">
         <h1 class="en-font">Legacy of Love</h1>
         <h2>時光中的愛</h2>
-        <p style="font-size: 14px; letter-spacing: 2px; color: var(--accent-gold); margin-bottom: 5px;">12.25 傳承之光：跨越 35 年的幸福疊影</p>
+        <p class="hero-tagline">12.25 傳承之光：跨越 35 年的幸福疊影</p>
         <div class="hero-names">Kerwin & Alisa</div>
         
         <div class="countdown-container" id="countdown">
@@ -437,7 +475,7 @@ html_content = """<!DOCTYPE html>
     <section id="about">
         <h2 class="section-title">關於我們</h2>
         <div class="section-subtitle">Our Story</div>
-        <p style="max-width: 600px; margin: 0 auto; color: #555; text-align: justify; text-justify: inter-word;">
+        <p style="max-width: 600px; width: 100%; margin: 0 auto; color: #555; text-align: justify; text-justify: inter-word;">
             35 年前的 12 月 25 日，我們的雙方父母在同一個日子裡，各自攜手步入了婚姻的殿堂。35 年後的今天，我們承接了這份不可思議的緣分與沉甸甸的幸福。
             這不僅僅是一場婚禮，更是一份關於愛、理解與承諾的永恆傳承。誠摯邀請您，與我們一同見證這份在時光中淬鍊出的幸福疊影。
         </p>
@@ -455,7 +493,7 @@ html_content = """<!DOCTYPE html>
             </div>
             <div class="v-card">
                 <h3>日期 & 時間</h3>
-                <p><strong> wedding Date：</strong>2026 年 12 月 25 日 (星期五)</p>
+                <p><strong>Wedding Date：</strong>2026 年 12 月 25 日 (星期五)</p>
                 <p><strong>宴席時間：</strong>中午 12:00 準時入席</p>
             </div>
             <div class="v-card">
@@ -565,7 +603,6 @@ html_content = """<!DOCTYPE html>
     <script>
         var submitted = false;
 
-        // 倒數計時邏輯 (目標：2026-12-25 12:00:00)
         const targetDate = new Date("December 25, 2026 12:00:00").getTime();
 
         function updateCountdown() {
@@ -591,7 +628,6 @@ html_content = """<!DOCTYPE html>
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // 9. 交通指引摺疊面板 (Accordion) 互動邏輯
         const accHeaders = document.querySelectorAll(".accordion-header");
         accHeaders.forEach(header => {
             header.addEventListener("click", function() {
@@ -602,7 +638,6 @@ html_content = """<!DOCTYPE html>
                     content.style.display = "none";
                     icon.innerText = "▼";
                 } else {
-                    // 先關閉其他
                     document.querySelectorAll(".accordion-content").forEach(c => c.style.display = "none");
                     document.querySelectorAll(".accordion-header span:last-child").forEach(i => i.innerText = "▼");
                     
@@ -616,7 +651,7 @@ html_content = """<!DOCTYPE html>
 </html>
 """
 
-with open("wedding_invitation.html", "w", encoding="utf-8") as file:
-    file.write(html_content)
+with open("wedding_invitation-v2.html", "w", encoding="utf-8") as file:
+    file.write(responsive_html_content)
 
-print("File successfully generated.")
+print("Responsive file successfully generated.")
