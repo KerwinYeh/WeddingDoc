@@ -270,75 +270,49 @@
             line-height: 1.6;
         }
 
-        /* 表單設計 */
-        .form-container {
+        /* 簡化後的出席回函大按鈕區塊 */
+        .rsvp-container {
             background: white;
             width: 100%;
             max-width: 600px;
             margin: 0 auto;
-            padding: clamp(25px, 6vw, 40px) clamp(15px, 4vw, 30px);
+            padding: clamp(35px, 6vw, 50px) clamp(20px, 4vw, 40px);
             border-radius: 16px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.04);
-            text-align: left;
+            text-align: center;
         }
 
-        .form-group {
-            margin-bottom: 20px;
-            width: 100%;
-        }
-
-        .form-label {
-            display: block;
-            font-weight: 600;
+        .rsvp-text {
             font-size: 15px;
-            color: var(--forest-green);
-            margin-bottom: 8px;
+            color: #555;
+            margin-bottom: 30px;
         }
 
-        .form-label span {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 13px;
-            color: #777;
-            margin-left: 5px;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 14px;
-        }
-
-        .radio-group {
-            display: flex;
-            gap: 15px;
-            margin-top: 5px;
-            flex-wrap: wrap; 
-        }
-
-        .radio-label {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 14px;
-            cursor: pointer;
-        }
-
-        .btn-submit {
+        .btn-rsvp-link {
+            display: inline-block;
             width: 100%;
             background-color: var(--primary-red);
             color: white;
-            border: none;
-            padding: 14px;
+            text-decoration: none;
+            padding: 16px 20px;
             font-size: 16px;
             font-weight: 600;
             border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.3s;
+            letter-spacing: 2px;
+            box-shadow: 0 5px 15px rgba(139, 30, 46, 0.2);
+            transition: all 0.3s ease;
         }
 
+        .btn-rsvp-link:hover {
+            background-color: #6d1522;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 30, 46, 0.3);
+        }
+
+        .btn-rsvp-link:active {
+            transform: translateY(1px);
+        }
+        
         footer {
             background-color: var(--forest-green);
             color: rgba(255,255,255,0.7);
@@ -437,110 +411,12 @@
     <section id="rsvp" style="background-color: #f2f2ed;">
         <h2 class="section-title">出席回函</h2>
         <div class="section-subtitle">RSVP Form</div>
-        <div class="form-container">
-            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted){window.location='#'; alert('表單已成功提交，期待與您相見！');}"></iframe>
-            <form action="https://docs.google.com/forms/d/e/1FAIpQLSfekzvGC9AS88TGr-5R3qOrYsWD7K7BU3faSEFaSdxIN4K9BQ/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
-                
-                <div class="form-group">
-                    <label class="form-label">您的姓名<span>/ Name</span></label>
-                    <input type="text" name="entry.1691234911" class="form-control" required>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">聯絡電話<span>/ Contact</span></label>
-                    <input type="tel" name="entry.460481026" class="form-control" required>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">與新人的關係<span>/ Relationship</span></label>
-                    <div class="radio-group">
-                        <label class="radio-label"><input type="radio" name="entry.1065115654" value="新郎的親友" checked> 新郎的親友</label>
-                        <label class="radio-label"><input type="radio" name="entry.1065115654" value="新娘的親友"> 新娘的親友</label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">12 / 25 (五) 午宴 是否能出席<span>/ RSVP</span></label>
-                    <div class="radio-group">
-                        <label class="radio-label"><input type="radio" name="entry.1352490799" value="是，我會參加" checked> 是，我會參加</label>
-                        <label class="radio-label"><input type="radio" name="entry.1352490799" value="不克前往，但祝福"> 不克前往，但祝福</label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">當天預計出席人數<span>/ Number of Guests</span></label>
-                    <select name="entry.254188339" class="form-control">
-                        <option value="1">1</option>
-                        <option value="2" selected>2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">是否需要安排兒童座椅<span>/ Need Baby Seats?</span></label>
-                    <div class="radio-group">
-                        <label class="radio-label"><input type="radio" name="entry.143527267" value="是"> 是</label>
-                        <label class="radio-label"><input type="radio" name="entry.143527267" value="否" checked> 否</label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">兒童座椅張數<span>/ Baby Seats Count</span></label>
-                    <select name="entry.1118174421" class="form-control">
-                        <option value="無" selected>無</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">是否需要素食<span>/ Need Vegetarian?</span></label>
-                    <div class="radio-group">
-                        <label class="radio-label"><input type="radio" name="entry.533215560" value="是"> 是</label>
-                        <label class="radio-label"><input type="radio" name="entry.533215560" value="否" checked> 否</label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">有幾位素食者<span>/ Vegetarian Count</span></label>
-                    <select name="entry.1705642874" class="form-control">
-                        <option value="無" selected>無</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">是否需要紙本喜帖<span>/ Invitation Card Type</span></label>
-                    <div class="radio-group">
-                        <label class="radio-label"><input type="radio" name="entry.735165214" value="是，我希望收到紙本喜帖 (我們會再跟您約時間)" checked>是，我希望收到紙本喜帖 (我們會再跟您約時間)</label>
-                        <label class="radio-label"><input type="radio" name="entry.735165214" value="電子喜帖即可 (下方填寫E-Mail)">電子喜帖即可 (下方填寫E-Mail)</label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">E-Mail <span>/ Email Address</span></label>
-                    <input type="email" name="entry.454921535" class="form-control">
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">歡迎留下想對我們說的話或祝福<span>/ Blessings</span></label>
-                    <textarea name="entry.1743152648" class="form-control" rows="3" style="resize: none;" placeholder="留下您的溫暖祝福..."></textarea>
-                </div>
-
-                <button type="submit" class="btn-submit">送出回函 Submit</button>
-            </form>
+        <div class="rsvp-container">
+            <p class="rsvp-text">為了帶給您完美的盛宴體驗，請點擊下方按鈕前往填寫出席回函，謝謝您！</p>
+            
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfekzvGC9AS88TGr-5R3qOrYsWD7K7BU3faSEFaSdxIN4K9BQ/viewform?usp=sharing&ouid=101938284654503865786" target="_blank" class="btn-rsvp-link">
+                填寫出席回函 Online RSVP
+            </a>
         </div>
     </section>
 
@@ -549,7 +425,6 @@
     </footer>
 
     <script>
-        var submitted = false;
         const targetDate = new Date("December 25, 2026 12:00:00").getTime();
 
         function updateCountdown() {
