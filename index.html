@@ -71,7 +71,7 @@
             color: var(--primary-red);
         }
 
-        /* 5. 首頁全螢幕封面背景 - 智慧型 RWD 雙照片自動切換 */
+        /* 5. 首頁全螢幕封面背景 - RWD 自動切換 */
         .hero {
             min-height: 100vh; 
             display: flex;
@@ -82,15 +82,12 @@
             color: #fff;
             padding: 100px 20px 40px 20px; 
             width: 100%;
-
-            /* 【電腦網頁版】：富士山橫式婚紗照 */
             background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.55)), url('https://i.postimg.cc/m2CD76L5/1T6A0346.jpg');
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
         }
 
-        /* 【手機直幅螢幕】：自動切換為直幅婚紗照 */
         @media (max-width: 767px) {
             .hero {
                 background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.55)), url('https://i.postimg.cc/mg0JG8fz/1T6A0400.jpg');
@@ -175,7 +172,6 @@
             line-height: 1.2;
         }
 
-        /* 區塊樣式 */
         section {
             padding: clamp(60px, 8vw, 90px) 20px;
             max-width: 1000px;
@@ -210,7 +206,6 @@
             font-style: italic;
         }
 
-        /* V-Card 資訊卡片 */
         .v-card-container {
             display: flex;
             flex-direction: column;
@@ -240,7 +235,6 @@
             white-space: nowrap;
         }
 
-        /* 摺疊交通指引 */
         .accordion {
             width: 100%;
             max-width: 600px;
@@ -458,47 +452,90 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">與新人的關係 <span>/ Relationship</span></label>
+                    <label class="form-label">與我們的關係 <span>/ Relationship</span></label>
                     <div class="radio-group">
-                        <label class="radio-label"><input type="radio" name="entry.1065115654" value="男方親友" checked> 男方親友</label>
-                        <label class="radio-label"><input type="radio" name="entry.1065115654" value="女方親友"> 女方親友</label>
-                        <label class="radio-label"><input type="radio" name="entry.1065115654" value="共同朋友"> 共同朋友</label>
+                        <label class="radio-label"><input type="radio" name="entry.1065115654" value="新郎的親友" checked> 新郎的親友</label>
+                        <label class="radio-label"><input type="radio" name="entry.1065115654" value="新娘的親友"> 新娘的親友</label>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">是否出席 <span>/ RSVP</span></label>
+                    <label class="form-label">12 / 25 (五) 午宴 是否能出席？ <span>/ RSVP</span></label>
                     <div class="radio-group">
-                        <label class="radio-label"><input type="radio" name="entry.1352490799" value="期待出席" checked> 期待出席</label>
-                        <label class="radio-label"><input type="radio" name="entry.1352490799" value="無法出席"> 無法出席</label>
+                        <label class="radio-label"><input type="radio" name="entry.1352490799" value="是，我會參加" checked> 是，我會參加</label>
+                        <label class="radio-label"><input type="radio" name="entry.1352490799" value="不克前往，但祝福"> 不克前往，但祝福</label>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">總出席人數 <span>/ Number of Guests</span></label>
-                    <input type="number" name="entry.254188339" class="form-control" placeholder="請包含大人與小孩">
+                    <label class="form-label">當當天預計出席人數 <span>/ Number of Guests</span></label>
+                    <select name="entry.254188339" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2" selected>2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">其中素食份數 <span>/ Vegetarian Portions</span></label>
-                    <input type="number" name="entry.1705642874" class="form-control" placeholder="若無請填 0">
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">嬰兒座椅需求數量 <span>/ Baby Seats Needed</span></label>
-                    <input type="number" name="entry.1118174421" class="form-control" placeholder="若無請填 0">
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">飲食習慣 <span>/ Dietary</span></label>
+                    <label class="form-label">是否需要安排兒童座椅？ <span>/ Need Baby Seats?</span></label>
                     <div class="radio-group">
-                        <label class="radio-label"><input type="radio" name="entry.211756535" value="葷食" checked> 葷食</label>
-                        <label class="radio-label"><input type="radio" name="entry.211756535" value="素食"> 素食</label>
+                        <label class="radio-label"><input type="radio" name="entry.143527267" value="是"> 是</label>
+                        <label class="radio-label"><input type="radio" name="entry.143527267" value="否" checked> 否</label>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">想對新人說的話 <span>/ Blessings to Newlyweds</span></label>
+                    <label class="form-label">兒童座椅張數 <span>/ Baby Seats Count</span></label>
+                    <select name="entry.1118174421" class="form-control">
+                        <option value="無" selected>無</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">是否需要素食？ <span>/ Need Vegetarian?</span></label>
+                    <div class="radio-group">
+                        <label class="radio-label"><input type="radio" name="entry.533215560" value="是"> 是</label>
+                        <label class="radio-label"><input type="radio" name="entry.533215560" value="否" checked> 否</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">有幾位素食者？ <span>/ Vegetarian Count</span></label>
+                    <select name="entry.1705642874" class="form-control">
+                        <option value="無" selected>無</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">是否需要紙本喜帖？ <span>/ Invitation Card Type</span></label>
+                    <div class="radio-group">
+                        <label class="radio-label"><input type="radio" name="entry.735165214" value="是，我希望收到紙本喜帖 (我們會再跟您約時間)" checked> 是，我希望收到紙本喜帖</label>
+                        <label class="radio-label"><input type="radio" name="entry.735165214" value="電子喜帖即可"> 電子喜帖即可</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">E-Mail <span>/ Email Address</span></label>
+                    <input type="email" name="entry.454921535" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">有什麼想對我們說的話或是祝福嗎？ <span>/ Blessings</span></label>
                     <textarea name="entry.1743152648" class="form-control" rows="3" style="resize: none;" placeholder="留下您的溫暖祝福..."></textarea>
                 </div>
 
